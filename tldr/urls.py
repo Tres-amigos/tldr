@@ -16,6 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from TLDRBank import views
+
 urlpatterns = [
+    url(r'^$',  views.index, name='index'),
+    url(r'^accounts/profile/', views.account, name='profile'),
+
+    url(r'^accounts/logout/', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),
+    url('^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
