@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Active accounts:</h1>
+    {% if active_accounts %}
+        <ul>
+        {% for active_account in active_accounts %}
+            <li>{{ active_account.name }} - {{ active_account.balance }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No active accounts are available.</p>
+    {% endif %}
+
+{% endblock %}

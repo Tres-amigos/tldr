@@ -37,8 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'TLDRBank',
     'accounts',
+    'treebeard',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,6 +71,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'tldr.wsgi.application'
 
@@ -106,3 +109,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
+
+
+
+LOGIN_REDIRECT_URL = '/accounts/profile/'
