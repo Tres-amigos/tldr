@@ -14,3 +14,6 @@ class TransferForm(forms.Form):
         super(TransferForm, self).__init__(*args, **kwargs)
         self.fields['source'].queryset = models.Account.active.filter(primary_user=user)
         self.fields['destination'].queryset = models.Account.active.filter(primary_user=user)
+
+class CreateAccountForm(forms.Form):
+    account_name = forms.CharField(label='Account name', max_length=100)
