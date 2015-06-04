@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^accounts/profile/', views.accounts, name='profile'),
     url(r'^accounts/transfer/', views.transfer, name='transfer'),
     url(r'^accounts/create/', views.createAccount, name='create_account'),
+    url(r'^accounts/transferlist/', views.transferList, name='transferlist'),
 
     url(r'^accounts/login/', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout/', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),

@@ -5,11 +5,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import TransferForm, CreateAccountForm
 from accounts import models, exceptions
 from .facade import transfer as accountTransfer
-from decimal import Decimal
-from django.contrib.auth.models import User
-import datetime
+from django.views import generic
 
-
+from TLDRBank import models as bankmodel
 
 
 # Create your views here.
@@ -78,3 +76,11 @@ def createAccount(request):
     else:
         form = CreateAccountForm()
         return render(request, 'new_account.html', {'form': form})
+
+
+
+
+@login_required(login_url='/account/login')
+def transferList(request):
+    transfers = models.Transfer.objects.filter(user=request.user)
+    return render(request, 'transfer_list.html', {'transfers': transfers})

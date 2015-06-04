@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Transfer history:</h1>
+    {% if active_accounts %}
+        <ul>
+        {% for transfer in transfers %}
+            <li>{{ transfer }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No transfers history available.</p>
+    {% endif %}
+
+{% endblock %}
+</html>

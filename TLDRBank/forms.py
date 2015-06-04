@@ -14,6 +14,7 @@ class TransferForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(TransferForm, self).__init__(*args, **kwargs)
         self.fields['source'].queryset = models.Account.active.filter(primary_user=user)
+        #self.fields['source'].queryset = models.Account.active.all()
         self.fields['destination'].queryset = models.Account.active.filter(primary_user=user)
 
 class CreateAccountForm(forms.Form):

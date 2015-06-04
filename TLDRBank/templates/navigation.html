@@ -17,7 +17,9 @@
                 <ul class="nav navbar-nav">
                     <li class="{% navactive request 'index index' %}"><a href="{% url 'index' %}">Home</a></li>
                     <li class="{% navactive request 'profile profile' %}"><a href="{% url 'profile' %}">Profile</a></li>
+                    <li class="{% navactive request 'create_account create_account' %}"><a href="{% url 'create_account' %}">Create Account</a></li>
                     <li class="{% navactive request 'transfer transfer' %}"><a href="{% url 'transfer' %}">Transfer</a></li>
+                    <li class="{% navactive request 'transferlist transferlist' %}"><a href="{% url 'transferlist' %}">Transfer History</a></li>
                     <!--
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>

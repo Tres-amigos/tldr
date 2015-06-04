@@ -3,9 +3,13 @@ import logging
 from django.db.models.loading import get_model
 
 from accounts import exceptions, core
+from TLDRBank import manager
 
 Account = get_model('accounts', 'Account')
-Transfer = get_model('accounts', 'Transfer')
+#Transfer = get_model('TLDRBank', 'Transfer')
+
+from TLDRBank.models import Transfer
+
 
 logger = logging.getLogger('accounts')
 
