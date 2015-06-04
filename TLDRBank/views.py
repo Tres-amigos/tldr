@@ -44,9 +44,9 @@ def transfer(request):
             user = request.user
             source = form.cleaned_data['source']
             destination = form.cleaned_data['destination']
-
+            amount = form.cleaned_data['amount']
             try:
-                trans = accountTransfer(source=source, destination=destination, amount=Decimal('10.00'), user=user)
+                trans = accountTransfer(source=source, destination=destination, amount=amount, user=user)
                 text = 'Successful transfer'
             except exceptions.AccountException as e:
                 text = 'Failed the transfer: %s' % e

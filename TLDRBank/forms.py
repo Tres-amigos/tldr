@@ -7,6 +7,7 @@ class AccountModelChoiceField(forms.ModelChoiceField):
         return obj.name
 
 class TransferForm(forms.Form):
+    amount = forms.DecimalField(decimal_places=2, max_digits=12)
     source = AccountModelChoiceField(queryset=None)
     destination = AccountModelChoiceField(queryset=None)
 
