@@ -2,12 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-from .forms import TransferForm
+from .forms import TransferForm, CreateAccountForm
 from accounts import models, exceptions
 from .facade import transfer as accountTransfer
 from decimal import Decimal
 from django.contrib.auth.models import User
-
+import datetime
 
 
 
@@ -22,7 +22,6 @@ def index(request):
     return HttpResponse(template.render(context))
 
 
-
 @login_required(login_url='/accounts/login/')
 def accounts(request):
     template = loader.get_template('accounts.html')
@@ -32,7 +31,6 @@ def accounts(request):
         'active_accounts': active_accounts,
     })
     return HttpResponse(template.render(context))
-
 
 
 @login_required(login_url='/accounts/login/')
@@ -51,7 +49,6 @@ def transfer(request):
             except exceptions.AccountException as e:
                 text = 'Failed the transfer: %s' % e
 
-
         template = loader.get_template('index.html')
         context = RequestContext(request, {
             'text': text,
@@ -60,3 +57,24 @@ def transfer(request):
     else:
         form = TransferForm(request.user)
         return render(request, 'transfer.html', {'form': form})
+
+
+@login_required(login_url='/accounts/login')
+def createAccount(request):
+    if request.method == 'POST':
+        form = CreateAccountForm(request.POST)
+        text = 'Creation of account has failed'
+        if form.is_valid():
+            account_name = form.cleaned_data['account_name']
+            user = request.user
+            user_account = models.Account.objects.create(primary_user=user, name=account_name)
+            text = 'Successful creation of account.'
+
+        template = loader.get_template('index.html')
+        context = RequestContext(request, {
+            'text': text,
+        })
+        return HttpResponse(template.render(context))
+    else:
+        form = CreateAccountForm()
+        return render(request, 'new_account.html', {'form': form})
