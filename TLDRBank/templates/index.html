@@ -2,13 +2,37 @@
 
 {% block content %}
 
+    <div class="page-header">
+        {% if user.is_authenticated %}
+            <h1>Welcome, {{ user.username }}!</h1>
+        {% else %}
+            <h1>Welcome. Please log in.</h1>
+        {% endif %}
+    </div>
+
     {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-    {% else %}
-        <p>Welcome, new user. Please log in.</p>
+    <div class="row">
+        <div class="col-md-8">
+            Graph
+        </div>
+        <div class="col-md-4">
+            <h2>Information</h2>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-warning">
+                    <h4 class="list-group-item-heading">Invoice</h4>
+                    <p class="list-group-item-text">New invoice from Netflix due 2015-06-31</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-danger">
+                    <h4 class="list-group-item-heading">System maintenance</h4>
+                    <p class="list-group-item-text">On 2015-06-21 between 04:00-04:30 the system will be down under maintenance.</p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-success">
+                    <h4 class="list-group-item-heading">Incoming payment</h4>
+                    <p class="list-group-item-text">New payment have been received</p>
+                </a>
+            </div>
+        </div>
+    </div>
     {% endif %}
-
-
-    {{ text }}
 
 {% endblock %}

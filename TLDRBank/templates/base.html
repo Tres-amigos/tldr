@@ -1,5 +1,6 @@
 {# Load the tag library #}
 {% load bootstrap3 %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TLDR Bank - {% block title %}Index!{% endblock %}</title>
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-
+    <link href="{% static "style.css" %}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,6 +29,12 @@
                 {% block content %}{% endblock %}
             </div>
         </div>
-    <script src="js/bootstrap.min.js"></script>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">made with <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> in Harbin</p>
+        </div>
+    </footer>
+    {% bootstrap_javascript %}
 </body>
 </html>
