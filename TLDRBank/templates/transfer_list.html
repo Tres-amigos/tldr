@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Transfer history:</h1>
-    {% if active_accounts %}
-        <ul>
+    <h1>Transfer History</h1>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>Reference</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Amount</th>
+            <th>Authorised by</th>
+            <th>Date created</th>
+        </tr>
         {% for transfer in transfers %}
-            <li>{{ transfer }}</li>
+            <tr>
+                <td>{{ transfer.reference }}</td>
+                <td>{{ transfer.source.name }}</td>
+                <td>{{ transfer.destination.name }}</td>
+                <td>{{ transfer.amount }}</td>
+                <td>{{ transfer.user|default:"-" }}</td>
+                <td>{{ transfer.date_created }}</td>
+            </tr>
         {% endfor %}
-        </ul>
-    {% else %}
-        <p>No transfers history available.</p>
-    {% endif %}
-
+    </table>
 {% endblock %}
 </html>
