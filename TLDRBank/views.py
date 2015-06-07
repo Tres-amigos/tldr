@@ -9,6 +9,8 @@ from django.views import generic
 
 from TLDRBank import models as bankmodel
 
+import pdfkit
+# import wkhtmltopdf
 
 # Create your views here.
 
@@ -78,9 +80,11 @@ def createAccount(request):
         return render(request, 'new_account.html', {'form': form})
 
 
-
-
 @login_required(login_url='/account/login')
 def transferList(request):
     transfers = models.Transfer.objects.filter(user=request.user)
     return render(request, 'transfer_list.html', {'transfers': transfers})
+
+@login_required(login_url='/account/login')
+def generatePDF(request):
+    pdfkit.from_url('transfer_list.html', 'transfer_history.pdf')
