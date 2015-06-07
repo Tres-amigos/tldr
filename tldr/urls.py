@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from wkhtmltopdf.views import PDFTemplateView
+
+
 
 from TLDRBank import views
 
 urlpatterns = [
     url(r'^$',  views.index, name='index'),
+    url(r'^pdf/$', views.MyPDFView, name='pdf'),
     url(r'^accounts/profile/', views.accounts, name='profile'),
     url(r'^accounts/transfer/', views.transfer, name='transfer'),
     url(r'^accounts/create/', views.createAccount, name='create_account'),

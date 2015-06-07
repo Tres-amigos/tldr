@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'debug_toolbar',
     'bootstrap3',
+    'wkhtmltopdf',
     'TLDRBank',
     'accounts',
     'treebeard',
@@ -93,7 +94,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Harbin'
 
 USE_I18N = True
 
@@ -104,8 +105,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
 STATIC_URL = '/static/'
+
+
+DIRNAME = os.path.abspath(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.path.join(DIRNAME, 'media')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(DIRNAME, 'static')
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),

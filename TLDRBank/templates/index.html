@@ -4,7 +4,7 @@
 
     <div class="page-header">
         {% if user.is_authenticated %}
-            <h1>Welcome, {{ user.username }}!</h1>
+            <h1>Welcome, {{ user.username }}! <small>{{ text }}</small></h1>
         {% else %}
             <h1>Welcome. Please log in.</h1>
         {% endif %}
